@@ -14,8 +14,8 @@ bool decode (const char * archivo)
 	char length[4];
 	
 	cout << "Cargando archivo" << endl;
-
-	FILE * toDecode = fopen(archivo, "rb");	
+	FILE * toDecode;
+	fopen_s(&toDecode, archivo, "rb");
 	
 	if (toDecode != nullptr)
 	{
