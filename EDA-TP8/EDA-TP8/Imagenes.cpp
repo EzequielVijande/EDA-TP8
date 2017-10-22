@@ -40,3 +40,4 @@ ALLEGRO_BITMAP * load_image_at_size(char* image_name, int size_x, int size_y)
 	al_destroy_bitmap(image);
 	return resized_image;
 }
+

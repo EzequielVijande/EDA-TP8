@@ -74,7 +74,10 @@ bool InitializeAllegroOutput(void)
 	{
 		return false;
 	}
-
+	if (!al_init_primitives_addon())
+	{
+		return false;
+	}
 	return true;
 }
 ALLEGRO_DISPLAY* viewer::GetDisplay(void)
@@ -112,4 +115,23 @@ bool viewer::InitializeResources(char* path, char* font_path, unsigned int font_
 void viewer::PrintSelected(bool selected_state)
 {
 
+}
+
+void viewer::DrawHalo(double x, double y, double size)
+{
+	ALLEGRO_BITMAP* current_target = al_get_target_bitmap();
+	al_set_target_backbuffer(display);
+
+	double upper_lext_x = x - (size / 2.0);
+	double upper_lext_y = y - (size / 2.0);
+
+	double lower_right_x = x + (size / 2.0);
+	double lower_right_y = y + (size / 2.0);
+
+	for (int i = 1; i <= 10; i++)
+	{
+		al_draw_rectangle(upper_lext_x -i, upper_lext_y - i, lower_right_x + i, lower_right_y + i, al_map_rgb(0,255-(i*20),0), 1.0);
+	}
+
+	al_set_target_bitmap(current_target);
 }

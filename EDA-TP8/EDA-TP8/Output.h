@@ -4,6 +4,7 @@
 #include <allegro5\allegro_font.h>
 #include <allegro5\allegro_ttf.h>
 #include <allegro5\allegro_color.h>
+#include <allegro5\allegro_primitives.h>
 #include "Imagenes.h"
 #include "damero.h"
 
@@ -28,6 +29,9 @@ private:
 	bool init;
 	bool InitializeResources(char* image, char* font_path, unsigned int font_size);
 	void PrintText(damero& damero_); //falta definir
-	void PrintSelected(bool selected_state); //dibuja el marco alrededor de una imagen seleccionada
+	void PrintSelected(bool selected_state); 
+	void DrawHalo(double x, double y, double size); //dibuja el marco alrededor de una imagen seleccionada
+													//recibe donde esta centrada la imagen y el tamano de la misma
+													//esta hecha solo para imagenes cuadradas.
 
 };
