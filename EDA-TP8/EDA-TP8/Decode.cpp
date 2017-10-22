@@ -17,21 +17,14 @@ bool decode (const char * archivo)
 
 	FILE * toDecode = fopen(archivo, "rb");	
 	
-	if (toDecode != NULL)
+	if (toDecode != nullptr)
 	{
 		for (int j = 0; j < 4; j++)			//Tomo los 4 primeros bytes del archivo que representan
 		{									//el largo de la imagen original
-			length[j] = fgetc(toDecode);		
+			length[j] = fgetc(toDecode);
 		}
-		
-		out = (unsigned char *)malloc((sizeof(char))*((int)length[0]) * 4);
 
-		if (out == NULL)
-		{
-			cout << "Error al decodificar el archivo" << endl;
-			ret = false;
-		}
-		else
+		if ((out = (unsigned char *)malloc((sizeof(char))*((int)length[0]) * 4)) != nullptr)
 		{
 			while ((c = fgetc(toDecode)) != EOF)
 			{
@@ -57,15 +50,20 @@ bool decode (const char * archivo)
 				}
 				else if (state == WAITING_BLUE)
 				{
-					out[i] = (char)c;
-					out[++i] = 255;
+					out[i++] = (char)c;
+					out[i++] = 255;
 					state = WAITING_H;
-					i++;
 				}
 			}
 
 			lodepng_encode32_file(archivo, out, (int)length[0], (int)length[0]);
 		}
+		else
+		{
+			cout << "Error al decodificar el archivo" << endl;
+			ret = false;
+		}
+
 		free(out);
 	}
 	else
