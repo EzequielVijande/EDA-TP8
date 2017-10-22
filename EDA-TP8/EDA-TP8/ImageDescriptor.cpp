@@ -17,7 +17,23 @@ void ImageDescriptor::toggleSelected(void)
 	selected = !selected;
 }
 
-void ImageDescriptor::draw(int x, int y, int scale)
+void ImageDescriptor::setPos(int posX_, int posY_) 
+{
+	posX = posX_;
+	posY = posY_;
+}
+
+int ImageDescriptor::getPosX(void)
+{
+	return posX;
+}
+
+int ImageDescriptor::getPosY(void)
+{
+	return posY;
+}
+
+void ImageDescriptor::draw(int sizeX, int sizeY)
 {
 	//dibujar la imagen.
 }
