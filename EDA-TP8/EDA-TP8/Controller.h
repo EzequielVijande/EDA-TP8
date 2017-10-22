@@ -10,8 +10,9 @@ class controller {
 public:
 	controller(viewer&);
 	~controller();
-	void dispatch(ALLEGRO_EVENT ev, damero& d);
-	bool IsInitOK();
+	void dispatch(viewer& v, damero& d);
+	bool IsInitOK()const;
+	bool GetExit()const;
 
 private:
 	ALLEGRO_EVENT_QUEUE* ev_queue;

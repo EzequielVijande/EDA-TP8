@@ -4,7 +4,13 @@
 
 ImageDescriptor::ImageDescriptor(const char * path_)
 {
+	error = false;
 	path = path_; //paso de (char *) a (string)
+	Image = load_image_at_size(path_, IMAGE_SIZE_X, IMAGE_SIZE_Y);
+	if (Image == nullptr)
+	{
+		error = true;
+	}
 
 }
 
@@ -46,4 +52,19 @@ int ImageDescriptor::getPosY(void)
 
 ImageDescriptor::~ImageDescriptor()
 {
+	if (!error)
+	{
+		al_destroy_bitmap(Image); //tira error pero no se porque.
+		Image = nullptr;
+	}
+}
+
+bool ImageDescriptor::GetError()const
+{
+	return error;
+}
+
+ALLEGRO_BITMAP* ImageDescriptor::GetBitmap()const
+{
+	return Image;
 }

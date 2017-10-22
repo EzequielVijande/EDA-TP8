@@ -1,10 +1,10 @@
 #include "Output.h"
-#define FONT_COLOR "red"
-#define FONT_SIZE 30
+#define FONT_COLOR "yellow"
+#define FONT_SIZE 15
 #define BACKGROUND_PATH "background.png" //Imagen de fondo
 #define FONT_PATH "font.ttf"
 
-#define WIDTH_HALLO 10
+#define WIDTH_HALO 10
 
 bool InitializeAllegroOutput(void);
 //Inicializa los  addons necesarios de allegro para
@@ -65,8 +65,8 @@ void viewer::PrintDamero(damero & damero_)
 	{
 		posX = ((damero_).getImages())[i].getPosX();
 		posY = ((damero_).getImages())[i].getPosY();
-		al_draw_scale_bitmap(posX, posY, sizeX, sizeY); //arreglar esta funcion
-		al_draw_text(FONT_PATH, FONT_COLOR, posX, posY + ((damero_).getMargenY() / 3), 0, (damero_.getImages())[i].getPath());
+		al_draw_bitmap((damero_.getImages())[i].GetBitmap(), posX, posY,0); //Chequar posiciones.
+		al_draw_text(font, al_color_name(FONT_COLOR), posX+(IMAGE_SIZE_X/2.0), posY + IMAGE_SIZE_Y+10, ALLEGRO_ALIGN_CENTRE, (damero_.getImages())[i].getPath());
 		if (((damero_).getImages())[i].wasSelected())
 		{
 			DrawHalo(posX, posY, sizeX, sizeY);
@@ -109,6 +109,7 @@ bool viewer::InitializeResources(char* path, char* font_path, unsigned int font_
 
 
 	background = load_image_at_size(path, width*(UNIT), height*(UNIT));
+	al_draw_bitmap(background, 0, 0, 0);
 	if (background == nullptr)
 	{
 		al_destroy_display(display);
@@ -127,14 +128,14 @@ bool viewer::InitializeResources(char* path, char* font_path, unsigned int font_
 }
 
 
-void viewer::DrawHalo(int x, int y, int sizeX, int sizeY)
+void viewer::DrawHalo(double x, double y, double sizeX, double sizeY)
 {
 	ALLEGRO_BITMAP* current_target = al_get_target_bitmap();
 	al_set_target_backbuffer(display);
 
 	for (int i = 1; i <= WIDTH_HALO; i++)
 	{
-		al_draw_rectangle(x-i, y - i, x + sizeX + i, y + sizeY + i, al_map_rgb(0,255-(i*20),0), 1.0);
+		al_draw_rectangle(x-i, y - i, x + sizeX + i, y + sizeY + i, al_map_rgb(0,255-i*20,0), 1.0);
 	}
 
 	al_set_target_bitmap(current_target);

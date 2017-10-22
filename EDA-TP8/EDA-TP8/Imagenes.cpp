@@ -1,5 +1,4 @@
 #include "Imagenes.h"
-
 void destroy_images(ALLEGRO_BITMAP ** imagen, unsigned int num_imagenes)
 {
 	unsigned int i;
@@ -9,7 +8,7 @@ void destroy_images(ALLEGRO_BITMAP ** imagen, unsigned int num_imagenes)
 	}
 }
 
-ALLEGRO_BITMAP * load_image_at_size(char* image_name, int size_x, int size_y)
+ALLEGRO_BITMAP * load_image_at_size(const char* image_name, int size_x, int size_y)
 {
 	ALLEGRO_BITMAP * image = nullptr;
 	ALLEGRO_BITMAP * current_target = nullptr;

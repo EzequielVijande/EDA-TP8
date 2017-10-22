@@ -30,7 +30,7 @@ private:
 	bool init;
 	bool InitializeResources(char* image, char* font_path, unsigned int font_size);
 	void PrintDamero(damero& damero_); //falta definir
-	void DrawHalo(int x, int y, double sizeX, int sizeY); //dibuja el marco alrededor de una imagen seleccionada
+	void DrawHalo(double x, double y, double sizeX, double sizeY); //dibuja el marco alrededor de una imagen seleccionada
 													//recibe la esquina superior izquierda de la imagen y el tamano de la misma
 
 };
