@@ -112,9 +112,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Imagenes.h" />
+    <ClInclude Include="lodepng.h" />
+    <ClInclude Include="Sector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Imagenes.cpp" />
+    <ClCompile Include="lodepng.cpp" />
+    <ClCompile Include="Sector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
