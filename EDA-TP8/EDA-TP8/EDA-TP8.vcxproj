@@ -122,6 +122,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="damero.h" />
     <ClInclude Include="ImageDescriptor.h" />
     <ClInclude Include="Imagenes.h" />
@@ -130,6 +131,7 @@
     <ClInclude Include="Sector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="damero.cpp" />
     <ClCompile Include="ImageDescriptor.cpp" />
     <ClCompile Include="Imagenes.cpp" />
