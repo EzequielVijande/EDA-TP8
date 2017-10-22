@@ -122,12 +122,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="damero.h" />
+    <ClInclude Include="ImageDescriptor.h" />
     <ClInclude Include="Imagenes.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Sector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="damero.cpp" />
+    <ClCompile Include="ImageDescriptor.cpp" />
     <ClCompile Include="Imagenes.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="Output.cpp" />
