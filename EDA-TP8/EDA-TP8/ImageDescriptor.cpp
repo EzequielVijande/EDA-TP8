@@ -2,11 +2,17 @@
 
 
 
-ImageDescriptor::ImageDescriptor(char * path_)
+ImageDescriptor::ImageDescriptor(const char * path_)
 {
 	path = path_; //paso de (char *) a (string)
 
 }
+
+const char * ImageDescriptor::getPath(void)
+{
+	return path;
+}
+
 bool ImageDescriptor::wasSelected(void)
 {
 	return selected;
@@ -33,10 +39,10 @@ int ImageDescriptor::getPosY(void)
 	return posY;
 }
 
-void ImageDescriptor::draw(int sizeX, int sizeY)
-{
-	//dibujar la imagen.
-}
+//void ImageDescriptor::draw(int sizeX, int sizeY)
+//{
+//	//dibujar la imagen.
+//}
 
 ImageDescriptor::~ImageDescriptor()
 {

@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-controller::controller(viewer& v)
+controller::controller(viewer & v)
 {
 	init = true;
 	exit = false;
@@ -28,10 +28,8 @@ bool controller::IsInitOK()
 	return init;
 }
 
-void controller::dispatch(ALLEGRO_EVENT ev, damero& d)
+void controller::dispatch(ALLEGRO_EVENT ev, damero & d)
 {
-	double pos_x = 0.0;
-	double pos_y = 0.0;
 	switch (ev.type)
 	{
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
@@ -41,49 +39,48 @@ void controller::dispatch(ALLEGRO_EVENT ev, damero& d)
 			switch (ev.keyboard.keycode) //Para cada uno de estos casos debe actualizarse el display.
 			{
 				case ALLEGRO_KEY_A:
-					//Selecciona todas las imagenes.
+					d.selectAllImages();
 					break;
 				case ALLEGRO_KEY_N:
-					//deselecciona todas las imagenes.
+					d.unSelectAllImages();
 					break;
 				case ALLEGRO_KEY_1:
-					//Selecciona la primera imagen.
+					(d.getImages())[0].toggleSelected();
 					break;
 				case ALLEGRO_KEY_2:
-					//Selecciona la segunda imagen.
+					(d.getImages())[1].toggleSelected();
 					break;
 				case ALLEGRO_KEY_3:
-					//Selecciona la tercera imagen.
+					(d.getImages())[2].toggleSelected();
 					break;
 				case ALLEGRO_KEY_4:
-					//Selecciona la cuarta imagen
+					(d.getImages())[3].toggleSelected();
 				case ALLEGRO_KEY_5:
-					//Selecciona la quinta imagen.
+					(d.getImages())[4].toggleSelected();
 					break;
 				case ALLEGRO_KEY_6:
-					//Selecciona la sexta imagen.
+					(d.getImages())[5].toggleSelected();
 					break;
 				case ALLEGRO_KEY_7:
-					//Selecciona la septima imagen.
+					(d.getImages())[6].toggleSelected();
 					break;
 				case ALLEGRO_KEY_8:
-					//Selecciona la octava imagen.
+					(d.getImages())[7].toggleSelected();
 					break;
 				case ALLEGRO_KEY_9:
-					//Selecciona la novena imagen.
+					(d.getImages())[8].toggleSelected();
 					break;
 				case ALLEGRO_KEY_ENTER:
-					//Verificar que hay alguna imagen seleccionada.
-					//Correr el algoritmo de compresion para cada imagen
-					//seleccionada.
+					if (d.wasSomethingSelected()) //esta funcion realiza un for, es posible que convenga sacar esta función y utilizar el mismo for 
+					{                             //para poner las funciones de compripmir
+						//Correr el algoritmo de compresion para cada imagen
+						//seleccionada.
+					}
 					break;
 			}
 			break;
 		case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-			pos_x = ev.mouse.x;
-			pos_y = ev.mouse.y;
-			//Habria que hacer una funcion que verifique si el click toco una
-			//imagen, y luego llamar a las funciones adecuadas de imagedescriptor.
+			d.touchDamero((int)ev.mouse.x, (int)ev.mouse.y);
 			break;
 		
 	}

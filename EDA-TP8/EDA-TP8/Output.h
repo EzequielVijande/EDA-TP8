@@ -9,12 +9,13 @@
 #include "damero.h"
 
 #define UNIT 1
+
 class viewer //Se ocupa de todo lo relacionado con el output de la simulacion
 {
 public:
 	viewer(unsigned int width_=1000, unsigned int height_=600);
 	~viewer();
-	void UpdateDisplay(damero& damero_);
+	void UpdateDisplay(damero & damero_);
 	bool IsInitOK(void);
 	ALLEGRO_DISPLAY* GetDisplay(void);
 
@@ -28,10 +29,8 @@ private:
 	double font_size;
 	bool init;
 	bool InitializeResources(char* image, char* font_path, unsigned int font_size);
-	void PrintText(damero& damero_); //falta definir
-	void PrintSelected(bool selected_state); 
-	void DrawHalo(double x, double y, double size); //dibuja el marco alrededor de una imagen seleccionada
-													//recibe donde esta centrada la imagen y el tamano de la misma
-													//esta hecha solo para imagenes cuadradas.
+	void PrintDamero(damero& damero_); //falta definir
+	void DrawHalo(int x, int y, double sizeX, int sizeY); //dibuja el marco alrededor de una imagen seleccionada
+													//recibe la esquina superior izquierda de la imagen y el tamano de la misma
 
 };

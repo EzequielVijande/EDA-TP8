@@ -6,17 +6,18 @@ using namespace std;
 class ImageDescriptor
 {
 public:
-	ImageDescriptor(char * path_); //falta completar.
+	ImageDescriptor(const char * path_); //falta completar.
 	bool wasSelected(void);
 	void toggleSelected(void);
 	void setPos(int posX_, int posY_);
 	int getPosX(void);
 	int getPosY(void);
-	void draw(int sizeX, int sizeY); //falta completar.
+	const char * getPath(void);
+	//void draw(int sizeX, int sizeY); //falta completar.
 	~ImageDescriptor();
 private:
 	bool selected;
-	string path;
+	const char * path;
 	int posX;
 	int posY;
 	ALLEGRO_BITMAP imageNotelected;

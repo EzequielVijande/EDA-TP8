@@ -4,6 +4,8 @@
 #define BACKGROUND_PATH "background.png" //Imagen de fondo
 #define FONT_PATH "font.ttf"
 
+#define WIDTH_HALLO 10
+
 bool InitializeAllegroOutput(void);
 //Inicializa los  addons necesarios de allegro para
 //utilizar el modulo de output.
@@ -48,17 +50,29 @@ void viewer::UpdateDisplay(damero& damero_)
 	al_set_target_backbuffer(display);
 	al_draw_bitmap(background, 0.0, 0.0, 0);
 	
-	PrintText(damero_);
-	//Falta agregar las funciones que dibujan de los Image descriptors.
+	PrintDamero(damero_);
 
 	al_set_target_bitmap(current_target);
 }
 
-void viewer::PrintText(damero& damero_)
+void viewer::PrintDamero(damero & damero_)
 {
-	//Falta completar una vez que quede definido como van a ser las posiciones
-	//de las imagenes y imprimir el contorno de si fue seleccionada.
+	int posX = 0;
+	int posY = 0;
+	int sizeX = damero_.getSizeX();
+	int sizeY = damero_.getSizeY();
+	for (int i = 0; i < (damero_).getImages().size(); i++)
+	{
+		posX = ((damero_).getImages())[i].getPosX();
+		posY = ((damero_).getImages())[i].getPosY();
+		al_draw_scale_bitmap(posX, posY, sizeX, sizeY); //arreglar esta funcion
+		al_draw_text(FONT_PATH, FONT_COLOR, posX, posY + ((damero_).getMargenY() / 3), 0, (damero_.getImages())[i].getPath());
+		if (((damero_).getImages())[i].wasSelected())
+		{
+			DrawHalo(posX, posY, sizeX, sizeY);
+		}
 
+	}
 }
 bool InitializeAllegroOutput(void)
 {
@@ -112,25 +126,15 @@ bool viewer::InitializeResources(char* path, char* font_path, unsigned int font_
 
 }
 
-void viewer::PrintSelected(bool selected_state)
-{
 
-}
-
-void viewer::DrawHalo(double x, double y, double size)
+void viewer::DrawHalo(int x, int y, int sizeX, int sizeY)
 {
 	ALLEGRO_BITMAP* current_target = al_get_target_bitmap();
 	al_set_target_backbuffer(display);
 
-	double upper_lext_x = x - (size / 2.0);
-	double upper_lext_y = y - (size / 2.0);
-
-	double lower_right_x = x + (size / 2.0);
-	double lower_right_y = y + (size / 2.0);
-
-	for (int i = 1; i <= 10; i++)
+	for (int i = 1; i <= WIDTH_HALO; i++)
 	{
-		al_draw_rectangle(upper_lext_x -i, upper_lext_y - i, lower_right_x + i, lower_right_y + i, al_map_rgb(0,255-(i*20),0), 1.0);
+		al_draw_rectangle(x-i, y - i, x + sizeX + i, y + sizeY + i, al_map_rgb(0,255-(i*20),0), 1.0);
 	}
 
 	al_set_target_bitmap(current_target);
