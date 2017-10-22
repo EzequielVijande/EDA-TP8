@@ -1,5 +1,6 @@
 #pragma once
-//incluir headers de Allegro
+#include <allegro5\allegro.h>
+#include <allegro5\allegro_image.h>
 
 
 ALLEGRO_BITMAP * load_image_at_size(char* image_name, int size_x, int size_y);

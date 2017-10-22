@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-//header de allegro!!!
+#include <allegro5\allegro.h>
+#include <allegro5\allegro_image.h>
 using namespace std;
 
 class ImageDescriptor
@@ -14,7 +15,7 @@ public:
 private:
 	bool selected;
 	string path;
-	ALLEGRO_BITMAP imageNotelected;
-	ALLEGRO_BITMAP imageSelected; // esto es opcional, tambien se puede agregar un recuadro encima en lugar de imprimir una imagen totalmente nueva. 
+	ALLEGRO_BITMAP* imageNotelected;
+	ALLEGRO_BITMAP* imageSelected; // esto es opcional, tambien se puede agregar un recuadro encima en lugar de imprimir una imagen totalmente nueva. 
 };
 
