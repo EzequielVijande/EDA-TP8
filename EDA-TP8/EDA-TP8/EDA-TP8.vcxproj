@@ -126,21 +126,21 @@
   <ItemGroup>
     <ClInclude Include="Controller.h" />
     <ClInclude Include="damero.h" />
+    <ClInclude Include="Decode.h" />
     <ClInclude Include="ImageDescriptor.h" />
     <ClInclude Include="Imagenes.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Output.h" />
-    <ClInclude Include="Sector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="damero.cpp" />
+    <ClCompile Include="Decode.cpp" />
     <ClCompile Include="ImageDescriptor.cpp" />
     <ClCompile Include="Imagenes.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Output.cpp" />
-    <ClCompile Include="Sector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
