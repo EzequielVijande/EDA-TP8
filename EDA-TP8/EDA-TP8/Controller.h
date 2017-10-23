@@ -6,9 +6,10 @@
 #include"Output.h"
 #include"damero.h"
 
+
 class controller {
 public:
-	controller(viewer&);
+	controller(viewer&, unsigned int threshold_);
 	~controller();
 	void dispatch(viewer& v, damero& d);
 	bool IsInitOK()const;
@@ -18,4 +19,5 @@ private:
 	ALLEGRO_EVENT_QUEUE* ev_queue;
 	bool init;
 	bool exit;
+	unsigned int threshold;
 };

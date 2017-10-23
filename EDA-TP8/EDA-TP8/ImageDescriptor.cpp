@@ -11,6 +11,13 @@ ImageDescriptor::ImageDescriptor(const char * path_)
 	{
 		error = true;
 	}
+	//INICIALIZAR ALTO Y ANCHO
+	ALLEGRO_BITMAP * originalImage = al_load_bitmap(path_);
+	width = al_get_bitmap_width(originalImage);
+	height = al_get_bitmap_height(originalImage);
+	al_destroy_bitmap(originalImage);
+
+
 
 }
 
@@ -43,6 +50,16 @@ int ImageDescriptor::getPosX(void)
 int ImageDescriptor::getPosY(void)
 {
 	return posY;
+}
+
+unsigned int ImageDescriptor::getWidth()
+{
+	return width;
+}
+
+unsigned int ImageDescriptor::getHeight()
+{
+	return height;
 }
 
 //void ImageDescriptor::draw(int sizeX, int sizeY)

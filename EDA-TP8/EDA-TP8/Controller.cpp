@@ -1,6 +1,8 @@
 #include "Controller.h"
+#include "compresor.h"
+#include <iostream>
 
-controller::controller(viewer & v)
+controller::controller(viewer & v, unsigned int threshold_)
 {
 	init = true;
 	exit = false;
@@ -28,6 +30,7 @@ controller::controller(viewer & v)
 		
 
 	}
+	threshold = threshold_;
 }
 
 controller::~controller()
@@ -126,14 +129,27 @@ void controller::dispatch(viewer& v, damero& d)
 					(d.getImages())[8].toggleSelected();
 					al_set_target_backbuffer(v.GetDisplay()); //Actualiza el display
 					v.UpdateDisplay(d);
-					al_flip_display(); //Lom uestra en pantalla.
+					al_flip_display(); //Lo muestra en pantalla.
 					break;
 
 				case ALLEGRO_KEY_ENTER:
-					if (d.wasSomethingSelected()) //esta funcion realiza un for, es posible que convenga sacar esta función y utilizar el mismo for 
-					{                             //para poner las funciones de compripmir
-						//Correr el algoritmo de compresion para cada imagen
-						//seleccionada.
+					if (d.wasSomethingSelected())
+					{                             
+						std::vector<ImageDescriptor>& ImgVctr = d.getImages;
+						for(int i =0;i<ImgVctr.size();i++)
+						{
+							if (ImgVctr[i].wasSelected)
+							{
+								if (compressImage(ImgVctr[i].getPath(), ImgVctr[i].getHeight(), ImgVctr[i].getWidth(),threshold))
+								{
+									std::cout << "Compresion de: " << ImgVctr[i].getPath() << " exitosa"<< std::endl;
+								}
+								else
+								{
+									std::cout << "Compresion de: " << ImgVctr[i].getPath() << " no pudo ser completada" << std::endl;
+								}
+							}
+						}
 					}
 					break;
 			}
@@ -142,7 +158,7 @@ void controller::dispatch(viewer& v, damero& d)
 			d.touchDamero((int)ev.mouse.x, (int)ev.mouse.y);
 			al_set_target_backbuffer(v.GetDisplay()); //Actualiza el display
 			v.UpdateDisplay(d);
-			al_flip_display(); //Lom uestra en pantalla.
+			al_flip_display(); //Lo muestra en pantalla.
 			break;
 		
 	}

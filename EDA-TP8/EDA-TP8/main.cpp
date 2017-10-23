@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <allegro5\allegro.h>
@@ -6,6 +7,8 @@
 #include "ImageDescriptor.h"
 #include "lodepng.h"
 #include "Output.h"
+
+#define THRESHOLD 50
 
 int main(int argc, char* argv[])
 {
@@ -35,7 +38,7 @@ int main(int argc, char* argv[])
 		cout << "Viewer Failed to initialize." << endl;
 		return -1;
 	}
-	controller ctr(v);
+	controller ctr(v,THRESHOLD);
 	while (!(ctr.GetExit()))
 	{
 		ctr.dispatch(v,dam);

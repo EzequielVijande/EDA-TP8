@@ -1,8 +1,9 @@
 #include "Decode.h"
 
-//const char * archivo = "Prueba.txt";
-
-bool decode (const char * archivo)
+const char * archivo = "prueba.met";
+/*
+//bool decode (const char * archivo)
+bool main (void)
 {
 	bool ret = true;
 
@@ -76,3 +77,4 @@ bool decode (const char * archivo)
 
 	return ret;
 }
+*/

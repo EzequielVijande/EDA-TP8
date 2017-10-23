@@ -18,6 +18,8 @@ public:
 	void setPos(int posX_, int posY_);
 	int getPosX(void);
 	int getPosY(void);
+	unsigned int getWidth();
+	unsigned int getHeight();
 	const char * getPath(void);
 	bool GetError()const;
 	ALLEGRO_BITMAP* GetBitmap()const;
@@ -30,5 +32,7 @@ private:
 	int posY;
 	ALLEGRO_BITMAP* Image;
 	bool error;
+	unsigned int  width;
+	unsigned int height;
 };
 
