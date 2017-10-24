@@ -126,3 +126,15 @@ bool fillCuadrant(std::vector<unsigned char>& original,unsigned int originalWidt
 	}
 	return true;
 }
+/*
+for (int i = iInicial, k = 0; i < iMax; i++, k++)
+{
+	for (int j = jInicial, l = 0; j < jMax; j++, l++)
+	{
+		original[i + j*(originalWidth * 4)] = r;
+		original[i + j*(originalWidth * 4)+1] = g;
+		original[i + j*(originalWidth * 4)+2] = b;
+		original[i + j*(originalWidth*4)+3] =255;
+	}
+}
+*/
