@@ -11,8 +11,8 @@ ImageDescriptor::ImageDescriptor(const char * path_)
 	{
 		error = true;
 	}
-	//INICIALIZAR ALTO Y ANCHO
 	ALLEGRO_BITMAP * originalImage = al_load_bitmap(path_);
+	//REVISAR QUE SI NO HAY IMAGEN TIRA UNA EXCEPTION
 	width = al_get_bitmap_width(originalImage);
 	height = al_get_bitmap_height(originalImage);
 	al_destroy_bitmap(originalImage);

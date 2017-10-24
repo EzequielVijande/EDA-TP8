@@ -135,10 +135,10 @@ void controller::dispatch(viewer& v, damero& d)
 				case ALLEGRO_KEY_ENTER:
 					if (d.wasSomethingSelected())
 					{                             
-						std::vector<ImageDescriptor>& ImgVctr = d.getImages;
+						std::vector<ImageDescriptor>& ImgVctr = d.getImages();
 						for(int i =0;i<ImgVctr.size();i++)
 						{
-							if (ImgVctr[i].wasSelected)
+							if (ImgVctr[i].wasSelected())
 							{
 								if (compressImage(ImgVctr[i].getPath(), ImgVctr[i].getHeight(), ImgVctr[i].getWidth(),threshold))
 								{
