@@ -5,7 +5,7 @@
 ImageDescriptor::ImageDescriptor(const char * path_)
 {
 	error = false;
-	path = path_; //paso de (char *) a (string)
+	path = path_;
 	Image = load_image_at_size(path_, IMAGE_SIZE_X, IMAGE_SIZE_Y);
 	if (Image == nullptr)
 	{

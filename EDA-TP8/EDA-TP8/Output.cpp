@@ -73,7 +73,27 @@ void viewer::PrintDamero(damero & damero_)
 		}
 
 	}
+
+	bool botonTouched = false;
+	int inicio = 0;  //en principio, deseo tener en cuenta todo el vector de botones.
+	int finish = (damero_).getBotons().size();
+
+	if ((damero_).getDameroActual() == 0) //primer damero
+	{
+		inicio = 1; //salteo el primer boton.
+	}
+	else if ((damero_).getDameroActual() == (damero_).getDameroMaximo()) //ultimo damero
+	{
+		finish--; //descarto el último boton.
+	}
+	for (int i = 0; (i < finish) && (!botonTouched); i++)
+	{
+		posX = ((damero_).getBotons())[i].getPosX();
+		posY = ((damero_).getBotons())[i].getPosY();
+	}
+	
 }
+
 bool InitializeAllegroOutput(void)
 {
 	if (!al_init_image_addon())

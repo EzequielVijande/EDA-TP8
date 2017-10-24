@@ -3,8 +3,10 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_image.h>
 #include"Imagenes.h"
-#define IMAGE_SIZE_X 256
+#define IMAGE_SIZE_X 256 
 #define IMAGE_SIZE_Y 130
+#define BOTON_SIZE_X 80
+#define BOTON_SIZE_Y 80
 #define SPACE 10
 
 using namespace std;
@@ -23,7 +25,6 @@ public:
 	const char * getPath(void);
 	bool GetError()const;
 	ALLEGRO_BITMAP* GetBitmap()const;
-	//void draw(int sizeX, int sizeY); //falta completar.
 	~ImageDescriptor();
 private:
 	bool selected;
