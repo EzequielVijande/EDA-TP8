@@ -8,6 +8,6 @@
 
 using namespace std;
 
-enum actualState { WAITING_RED, WAITING_GREEN, WAITING_BLUE, WAITING_H, WAITING_N };
+enum actualState { WAITING_RED, WAITING_GREEN, WAITING_BLUE, WAITING_N };
 
 //bool decode(const char * archivo);

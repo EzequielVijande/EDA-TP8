@@ -1,6 +1,6 @@
 #include "compresor.h"
 
-// Devuelve true en caso de que no haya error, devuelve false si es que lo hay
+// Devuelve false en caso de que no haya error, devuelve true si es que lo hay
 bool compressImage(const char * imagePath, unsigned width, unsigned height, unsigned int threshold)
 {
 	std::vector<unsigned char> image; //the raw pixels
@@ -8,13 +8,13 @@ bool compressImage(const char * imagePath, unsigned width, unsigned height, unsi
 	if(width != height)
 	{
 		std::cout << "Actualemente el compresor solo admite imagenes cuadradas" << std::endl;
-		return false;
+		return true;
 	}
 	unsigned error = lodepng::decode(image, width, height, imagePath);
 	if (error)
 	{
 		std::cout << "Decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
-		return false;
+		return true;
 	}
 
 	std::string imageName(imagePath);
@@ -31,7 +31,7 @@ bool compressImage(const char * imagePath, unsigned width, unsigned height, unsi
 	}
 	quadTree(file, image, threshold, width);
 
-	return true;
+	return false;
 }
 
 void quadTree(fs::ofstream & text, std::vector<unsigned char>& image, unsigned int threshold ,unsigned int width)
@@ -54,17 +54,14 @@ void quadTree(fs::ofstream & text, std::vector<unsigned char>& image, unsigned i
 		text << 'H';
 		// declare en el archivo que se divide ahora en cuatro hijos
 		// llamo a la recursion para cada cuadrante
-		text << 'N';
 		quadTree(text, firstCuadrant, threshold, width/2);
-		text << 'N';
 		quadTree(text, secondCuadrant, threshold, width / 2);
-		text << 'N';
 		quadTree(text, thirdCuadrant, threshold, width / 2);
-		text << 'N';
 		quadTree(text, fouthCuadrant, threshold, width / 2);
 	}
 	else //se llega al limite, se reemplaza por el promedio
 	{
+		text << 'N';
 		text << (char)((rMax + rMin)/2);
 		text << (char)((gMax + gMin)/2);
 		text << (char)((bMax + bMin)/2);
@@ -75,7 +72,7 @@ void setMinMax(std::vector<unsigned char>& image,unsigned int & min, unsigned in
 {
 	min = 255;
 	max = 0;
-	for (int i = offset; (i < (image.size()/(skipNro+1))); i += (skipNro+1))
+	for (int i = offset; (i < image.size()); i += (skipNro+1))
 	{
 		if (image[i] > max)
 		{
@@ -124,8 +121,20 @@ bool fillCuadrant(std::vector<unsigned char>& original,unsigned int originalWidt
 	{
 		for (int j = jInicial, l = 0; j < jMax; j++,l++)
 		{
-			nCuadrant[k + l*(originalWidth)] = original[i + j*(originalWidth)];
+			nCuadrant[k + l*(originalWidth*2)] = original[i + j*(originalWidth*4)];
 		}
 	}
 	return true;
 }
+/*
+for (int i = iInicial, k = 0; i < iMax; i++, k++)
+{
+	for (int j = jInicial, l = 0; j < jMax; j++, l++)
+	{
+		original[i + j*(originalWidth * 4)] = r;
+		original[i + j*(originalWidth * 4)+1] = g;
+		original[i + j*(originalWidth * 4)+2] = b;
+		original[i + j*(originalWidth*4)+3] =255;
+	}
+}
+*/
