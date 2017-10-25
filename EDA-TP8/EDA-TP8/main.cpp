@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 	vector <string> images_path;
-	SearchFiles(images_path, "", ".png");
+	SearchFiles(images_path, "C:/Users/Ezequiel PC/Downloads", ".png");
 	viewer v;
 	vector<ImageDescriptor> Images;
 	for (int i = 0; i < ((int)images_path.size()); i++)
@@ -29,8 +29,8 @@ int main(int argc, char* argv[])
 	}
 
 	vector<ImageDescriptor> Botons;
-	ImageDescriptor botLeft("../EDA-TP8/botLeft.png"); //init de los botones
-	ImageDescriptor botRight("../EDA-TP8/botRight.png");
+	ImageDescriptor botLeft("../EDA-TP8/botones/boton_left.png"); //init de los botones
+	ImageDescriptor botRight("../EDA-TP8/botones/boton_right.png");
 	Botons.push_back(botLeft); //primero el boton izquierdo, luego el derecho
 	Botons.push_back(botRight);
 
