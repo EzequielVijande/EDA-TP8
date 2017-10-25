@@ -3,8 +3,8 @@
 const char * archivo = "prueba1.met";
 const char * archivo2 = "prueba1.png";
 
-//bool decode (const char * archivo)
-bool main (void)
+bool decode (const char * archivo)
+//bool main (void)
 {
 	bool ret = true;
 
@@ -72,7 +72,7 @@ bool main (void)
 
 			if (decoded != nullptr)
 			{
-				for (int j = 0; j < bytesCount; j++)
+				for (unsigned int j = 0; j < bytesCount; j++)
 				{
 					fputc(tempbuff[j], decoded);
 				}

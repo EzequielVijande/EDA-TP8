@@ -5,14 +5,12 @@
 #define LAST_IMG_OF_THIS_DAMERO(dameroActual) (IMAGES_PER_DAMERO * (dameroActual + 1))
 
 
-damero::damero(int width_, int height_, vector<ImageDescriptor> & images_, vector<ImageDescriptor> & botons_)
+damero::damero(int width_, int height_, vector<ImageDescriptor> & images_, vector<ImageDescriptor> & botons_) : images(images_), botons(botons_)
 {
 	width = width_;
 	height = height_;
-	images = images_;
 	margenX = width * MARGEN_RATE;
 	margenY = height * MARGEN_RATE;
-	botons = botons_;
 	botons[BOTON_LEFT].setPos(BOTON_SIZE_X * MARGEN_RATE, height - BOTON_SIZE_Y);
 	botons[BOTON_LEFT].setPos(width-(BOTON_SIZE_X * MARGEN_RATE), height - BOTON_SIZE_Y);
 

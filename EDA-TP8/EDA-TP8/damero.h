@@ -9,7 +9,7 @@
 class damero
 {
 public:
-	damero(int width_, int height_, vector<ImageDescriptor> & images_, vector<ImageDescriptor> & botons_) : images(images_), botons(botons_) {} //HAY QUE ARREGLARLO!
+	damero(int width_, int height_, vector<ImageDescriptor> & images_, vector<ImageDescriptor> & botons_);// : images(images_), botons(botons_) {} //HAY QUE ARREGLARLO!
 	void refresh(void);
 	void touchDamero(int x, int y);
 	void selectAllImages(void);
