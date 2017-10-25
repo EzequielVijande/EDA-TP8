@@ -1,14 +1,11 @@
-
 #include "FileSearcher.h"
 
-bool SearchFiles(vector<const char*>& paths_vector, const char*directory, const char* ext)
+bool SearchFiles(vector<string>& paths_vector, const char*directory, const char* ext)
 {
 	path p(directory);
 	string dir(directory);
-	string result1;
 	string name;
 	string extension;
-	unsigned int i = 0;
 	if (exists(p))
 	{
 		if (is_directory(p))
@@ -20,9 +17,7 @@ bool SearchFiles(vector<const char*>& paths_vector, const char*directory, const 
 				if (strcmp(ext, (extension.c_str())) == 0)
 				{
 					name = (itr->path().parent_path().string()) + "/" + (itr->path().filename().string());
-					paths_vector.push_back(name.c_str()); //Guarda el path en el vector.
-					cout << paths_vector[i] << endl;
-					i++;
+					paths_vector.push_back(name); //Guarda el path en el vector.
 				}
 			}
 			return true;
