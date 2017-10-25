@@ -13,11 +13,10 @@ damero::damero(int width_, int height_, vector<ImageDescriptor> & images_, vecto
 	margenX = width * MARGEN_RATE;
 	margenY = height * MARGEN_RATE;
 	botons = botons_;
-	images = images_;
 	botons[BOTON_LEFT].setPos(BOTON_SIZE_X * MARGEN_RATE, height - BOTON_SIZE_Y);
 	botons[BOTON_LEFT].setPos(width-(BOTON_SIZE_X * MARGEN_RATE), height - BOTON_SIZE_Y);
 
-	dameroMaximo = images.size() / IMAGES_PER_DAMERO;
+	dameroMaximo = (int) images.size() / IMAGES_PER_DAMERO;
 	if (!(images.size() % IMAGES_PER_DAMERO)) //si la division es exacta
 	{
 		dameroMaximo--; //resto, porque los dameros arrancan desde 0.
@@ -55,7 +54,7 @@ void damero::touchDamero(int x, int y)
 	{
 		bool botonTouched = false;
 		int inicio = 0;  //en principio, deseo tener en cuenta todo el vector de botones.
-		int finish = botons.size();
+		int finish = (int) botons.size();
 		if (dameroActual == 0) //primer damero
 		{
 			inicio = 1; //salteo el primer boton.
@@ -194,8 +193,6 @@ void damero::changeDamero(int botonPressed_)
 			break;
 	}
 }
-
-
 
 damero::~damero()
 {

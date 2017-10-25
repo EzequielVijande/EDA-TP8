@@ -76,7 +76,7 @@ void viewer::PrintDamero(damero & damero_)
 
 	bool botonTouched = false;
 	int inicio = 0;  //en principio, deseo tener en cuenta todo el vector de botones.
-	int finish = (damero_).getBotons().size();
+	int finish = (int) (damero_).getBotons().size();
 
 	if ((damero_).getDameroActual() == 0) //primer damero
 	{

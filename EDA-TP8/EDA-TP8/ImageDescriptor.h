@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include <allegro5\allegro.h>
-#include <allegro5\allegro_image.h>
+//#include <allegro5\allegro.h>
+//#include <allegro5\allegro_image.h>
 #include"Imagenes.h"
 #define IMAGE_SIZE_X 256 
 #define IMAGE_SIZE_Y 130
