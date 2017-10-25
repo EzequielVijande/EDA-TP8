@@ -1,16 +1,17 @@
 #include "ImageDescriptor.h"
 
+#include <iostream>
 
-
-ImageDescriptor::ImageDescriptor(const char * path_)
+ImageDescriptor::ImageDescriptor(const char * path_) : path(path_)
 {
 	error = false;
-	path = path_;
+	//path = path_;
 	Image = load_image_at_size(path_, IMAGE_SIZE_X, IMAGE_SIZE_Y);
 	if (Image == nullptr)
 	{
 		error = true;
 	}
+	cout << path << endl;
 	ALLEGRO_BITMAP * originalImage = al_load_bitmap(path_);
 	//REVISAR QUE SI NO HAY IMAGEN TIRA UNA EXCEPTION
 	width = al_get_bitmap_width(originalImage);
