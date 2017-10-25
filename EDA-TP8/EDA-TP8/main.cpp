@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include "FileSearcher.h"
 #include <allegro5\allegro.h>
 #include "Controller.h"
 #include "damero.h"
@@ -17,15 +18,22 @@ int main(int argc, char* argv[])
 		cout << "Allegro Failed to initialize" << endl;
 		return -1;
 	}
+	vector <string> images_path;
+	SearchFiles(images_path, "", ".png");
 	viewer v;
 	vector<ImageDescriptor> Images;
-	ImageDescriptor img("../EDA-TP8/prueba.png"); //init de todas las imagenes (push_back al vector).
-	Images.push_back(img);
+	for (int i = 0; i < ((int)images_path.size()); i++)
+	{
+		ImageDescriptor img(images_path[i].c_str()); //init de todas las imagenes
+		Images.push_back(img);
+	}
+
 	vector<ImageDescriptor> Botons;
-	ImageDescriptor botLeft("../EDA-TP8/botLeft.png"); //init de los botones (push_back al vector).
+	ImageDescriptor botLeft("../EDA-TP8/botLeft.png"); //init de los botones
 	ImageDescriptor botRight("../EDA-TP8/botRight.png");
-	Botons.push_back(botLeft);
+	Botons.push_back(botLeft); //primero el boton izquierdo, luego el derecho
 	Botons.push_back(botRight);
+
 	damero dam(1000, 600, Images, Botons);
 	if (dam.imagesError())
 	{
@@ -33,11 +41,11 @@ int main(int argc, char* argv[])
 		al_rest(1.0);
 		return -1;
 	}
-	img.setPos(0.1 * 1000, 0.1 * 600); //en lugar de setear las imagenes una por una, hago refresh del damero y se me setean todas las posiciones
-										//de manera simétrica.
-	dam.refresh();
+
 	dam.setImagesSize(IMAGE_SIZE_X, IMAGE_SIZE_Y); //se podria hacer que el tamaño lo decida damero, segun el tamaño del damero, el margen 
-													//entre imagenes, y la cantidad de imagenes
+												   //entre imagenes, y la cantidad de imagenes
+	dam.refresh(); //se setean todas las posiciones de las imagenes de manera simetrica
+	
 	al_set_target_backbuffer(v.GetDisplay());
 	al_flip_display();
 	
