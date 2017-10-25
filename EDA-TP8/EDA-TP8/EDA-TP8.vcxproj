@@ -128,6 +128,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="damero.h" />
     <ClInclude Include="Decode.h" />
+    <ClInclude Include="FileSearcher.h" />
     <ClInclude Include="ImageDescriptor.h" />
     <ClInclude Include="Imagenes.h" />
     <ClInclude Include="lodepng.h" />
@@ -138,6 +139,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="damero.cpp" />
     <ClCompile Include="Decode.cpp" />
+    <ClCompile Include="FileSearcher.cpp" />
     <ClCompile Include="ImageDescriptor.cpp" />
     <ClCompile Include="Imagenes.cpp" />
     <ClCompile Include="lodepng.cpp" />
