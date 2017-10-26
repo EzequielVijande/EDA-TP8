@@ -63,8 +63,8 @@ int main(int argc, char* argv[])
 			}
 
 			vector<ImageDescriptor> Botons;
-			ImageDescriptor botLeft("C:/Users/malen/source/repos/EDA-TP8/EDA-TP8/EDA-TP8/boton_left.png"); //init de los botones
-			ImageDescriptor botRight("C:/Users/malen/source/repos/EDA-TP8/EDA-TP8/EDA-TP8/boton_right.png");
+			ImageDescriptor botLeft("../EDA-TP8/botones/boton_left.png"); //init de los botones
+			ImageDescriptor botRight("../EDA-TP8/botones/boton_right.png");
 			Botons.push_back(botLeft); //primero el boton izquierdo, luego el derecho
 			Botons.push_back(botRight);
 
