@@ -12,7 +12,7 @@ damero::damero(int width_, int height_, vector<ImageDescriptor> & images_, vecto
 	margenX = width * MARGEN_RATE;
 	margenY = height * MARGEN_RATE;
 	botons[BOTON_LEFT].setPos(BOTON_SIZE_X * MARGEN_RATE, height - BOTON_SIZE_Y);
-	botons[BOTON_LEFT].setPos(width-(BOTON_SIZE_X * MARGEN_RATE), height - BOTON_SIZE_Y);
+	botons[BOTON_RIGHT].setPos(width-(BOTON_SIZE_X * MARGEN_RATE), height - BOTON_SIZE_Y);
 
 	dameroMaximo = (int) images.size() / IMAGES_PER_DAMERO;
 	if (!(images.size() % IMAGES_PER_DAMERO)) //si la division es exacta

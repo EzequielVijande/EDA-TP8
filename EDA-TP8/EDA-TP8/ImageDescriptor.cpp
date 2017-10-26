@@ -13,10 +13,26 @@ ImageDescriptor::ImageDescriptor(const char * path_) : path(path_)
 	}
 	cout << path << endl;
 	ALLEGRO_BITMAP * originalImage = al_load_bitmap(path_);
-	//REVISAR QUE SI NO HAY IMAGEN TIRA UNA EXCEPTION
-	width = al_get_bitmap_width(originalImage);
-	height = al_get_bitmap_height(originalImage);
-	al_destroy_bitmap(originalImage);
+	if (originalImage == nullptr)
+	{
+		error = true;
+	}
+	else
+	{
+		width = al_get_bitmap_width(originalImage);
+		height = al_get_bitmap_height(originalImage);
+		al_destroy_bitmap(originalImage);
+	}
+
+
+}
+ImageDescriptor::ImageDescriptor()
+{
+	error = true;
+	Image = nullptr;
+	width = 0;
+	height = 0;
+	Image = nullptr;
 
 
 
@@ -63,18 +79,16 @@ unsigned int ImageDescriptor::getHeight()
 	return height;
 }
 
-//void ImageDescriptor::draw(int sizeX, int sizeY)
-//{
-//	//dibujar la imagen.
-//}
 
 ImageDescriptor::~ImageDescriptor()
 {
+	/*
 	if (!error)
 	{
 		al_destroy_bitmap(Image); //tira error pero no se porque.
 		Image = nullptr;
 	}
+	*/
 }
 
 bool ImageDescriptor::GetError()const
