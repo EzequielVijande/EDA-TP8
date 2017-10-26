@@ -17,6 +17,12 @@ typedef struct
 	int threshold;
 }userData_t;
 
+//getPathFromCmd: funcion que concatena las palabras de un arreglo de char *, desde la segunda hasta la última palabra(inclusive),
+//insertando entre medio de ellas un espacio. Recibe la cantidad de elementos del arreglo, el arreglo de palabras(o el char **).
+//Devuelve las palabras concatenadas como string.
+//Esta funcion contempla los casos que se recibe un path por línea de comando, pero ese path puede tener espacios entre medio.
+string getPathFromCmd(int argc, char ** argv);
+
 //interpretarThreshold: funcion que recibe un numero de 0,1 a 100 y lo traduce al threshold (umbral). devuelve el threshold traducido.
 int interpretarThreshold(double threshold_cmd);
 
@@ -106,8 +112,8 @@ bool parserCmd(int argc, char ** argv, userData_t & userData)
 	bool ret = true;
 	if (argc > 2)
 	{
-		userData.path = argv[1];
-		double threshold_cmd = string2dec(argv[2]);
+		userData.path = getPathFromCmd(argc-1, argv); //arg - 1 porque el último elemento del argv no pertenece al path (el último es el treshold)
+		double threshold_cmd = string2dec(argv[argc-1]); //el último parámetro es el treshold
 		if ((threshold_cmd >= 1) && (threshold_cmd <= 100))
 		{
 			userData.threshold = interpretarThreshold(threshold_cmd);
@@ -139,4 +145,15 @@ int interpretarThreshold(double threshold_cmd)
 {
 	int threshold = (int)ceil(threshold_cmd);
 	return threshold;
+}
+
+string getPathFromCmd(int argc, char ** argv)
+{
+	string completePath;
+	for (int i = 1; i < argc; i++)
+	{
+		completePath += ' ' + argv[i];
+	}
+
+	return completePath;
 }
