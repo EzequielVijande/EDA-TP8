@@ -14,6 +14,7 @@ using namespace std;
 class ImageDescriptor
 {
 public:
+	ImageDescriptor();
 	ImageDescriptor(const char * path_); //falta completar.
 	bool wasSelected(void);
 	void toggleSelected(void);
@@ -29,9 +30,9 @@ public:
 private:
 	bool selected;
 	const char * path;
+	ALLEGRO_BITMAP* Image;
 	int posX;
 	int posY;
-	ALLEGRO_BITMAP* Image;
 	bool error;
 	unsigned int  width;
 	unsigned int height;

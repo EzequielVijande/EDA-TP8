@@ -65,7 +65,7 @@ void viewer::PrintDamero(damero & damero_)
 	{
 		posX = ((damero_).getImages())[i].getPosX();
 		posY = ((damero_).getImages())[i].getPosY();
-		al_draw_bitmap((damero_.getImages())[i].GetBitmap(), posX, posY,0); //Chequar posiciones.
+		al_draw_bitmap(((damero_).getImages())[i].GetBitmap(), posX, posY,0); //Chequar posiciones.
 		al_draw_text(font, al_color_name(FONT_COLOR), posX+(IMAGE_SIZE_X/2.0), posY + IMAGE_SIZE_Y+10, ALLEGRO_ALIGN_CENTRE, (damero_.getImages())[i].getPath());
 		if (((damero_).getImages())[i].wasSelected())
 		{
@@ -73,6 +73,8 @@ void viewer::PrintDamero(damero & damero_)
 		}
 
 	}
+	al_draw_bitmap((damero_.getBotons()[0]).GetBitmap(), (damero_.getBotons()[0]).getPosX(), (damero_.getBotons()[0]).getPosY(),0);
+	al_draw_bitmap((damero_.getBotons()[1]).GetBitmap(), (damero_.getBotons()[1]).getPosX(), (damero_.getBotons()[1]).getPosY(), 0);
 
 	bool botonTouched = false;
 	int inicio = 0;  //en principio, deseo tener en cuenta todo el vector de botones.

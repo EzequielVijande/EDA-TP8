@@ -45,6 +45,8 @@ int main(int argc, char* argv[])
 		cout << "el path que ha pasado por parámetro es invalido, intente nuevamente" << endl;
 		cout << "recuerde que primero debe pasar un path valido, donde haya imagenes .png" << endl;
 		cout << "Luego, seguido de un espacio debe pasar el threshold, que es un numero entre 1 y 100" << endl;
+		cout << userData.path.c_str() << endl;
+		al_rest(5.0);
 	}
 	else if (((int)images_path.size()) == 0)
 	{
@@ -69,8 +71,8 @@ int main(int argc, char* argv[])
 			}
 
 			vector<ImageDescriptor> Botons;
-			ImageDescriptor botLeft("C:\\Users\\malen\\source\\repos\\EDA-TP8\\EDA-TP8\\EDA-TP8\\botones/boton_left.png"); //init de los botones
-			ImageDescriptor botRight("C:\\Users\\malen\\source\\repos\\EDA-TP8\\EDA-TP8\\EDA-TP8\\botones/boton_right.png");
+			ImageDescriptor botLeft("../EDA-TP8/botones/boton_left.png"); //init de los botones
+			ImageDescriptor botRight("../EDA-TP8/botones/boton_right.png");
 			Botons.push_back(botLeft); //primero el boton izquierdo, luego el derecho
 			Botons.push_back(botRight);
 
@@ -102,8 +104,7 @@ int main(int argc, char* argv[])
 			Images.erase(Images.begin()); //eliminar todas las imagenes y botones.
 		}
 	}
-	cout << "Press enter to quit..." << endl;
-	getchar();
+	
 	return 0;
 }
 
@@ -150,11 +151,7 @@ int interpretarThreshold(double threshold_cmd)
 
 string getPathFromCmd(int argc, char ** argv)
 {
-	string completePath;
-	if (argc > 0)
-	{
-		completePath = argv[1];
-	}
+	string completePath(argv[1]);
 	for (int i = 2; i < argc; i++)
 	{
 		completePath += ' ';
