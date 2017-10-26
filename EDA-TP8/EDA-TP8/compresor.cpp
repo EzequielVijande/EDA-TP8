@@ -1,14 +1,17 @@
 #include "compresor.h"
-
+#include <cmath>						
 // Devuelve false en caso de que no haya error, devuelve true si es que lo hay
 bool compressImage(const char * imagePath, unsigned width, unsigned height, unsigned int threshold)
 {
 	std::vector<unsigned char> image; //the raw pixels
-
 	if(width != height)
 	{
 		std::cout << "Actualemente el compresor solo admite imagenes cuadradas" << std::endl;
 		return true;
+	}
+	else if (floor(log2(width)) != log2(width))
+	{
+		std::cout << "Actualemnte el compresor solos admite largos que sean potencias de 2" << std::endl;
 	}
 	unsigned error = lodepng::decode(image, width, height, imagePath);
 	if (error)
