@@ -12,7 +12,7 @@ bool compressImage(const char * imagePath, unsigned width, unsigned height, unsi
 	else if (floor(log2(width)) != log2(width))
 	{
 		std::cout << "Actualemnte el compresor solos admite largos que sean potencias de 2" << std::endl;
-		return;
+		return true;
 	}
 	unsigned error = lodepng::decode(image, width, height, imagePath);
 	if (error)
