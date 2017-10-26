@@ -69,8 +69,8 @@ int main(int argc, char* argv[])
 			}
 
 			vector<ImageDescriptor> Botons;
-			ImageDescriptor botLeft("C:/Users/malen/source/repos/EDA-TP8/EDA-TP8/EDA-TP8/boton_left.png"); //init de los botones
-			ImageDescriptor botRight("C:/Users/malen/source/repos/EDA-TP8/EDA-TP8/EDA-TP8/boton_right.png");
+			ImageDescriptor botLeft("C:\\Users\\malen\\source\\repos\\EDA-TP8\\EDA-TP8\\EDA-TP8\\botones/boton_left.png"); //init de los botones
+			ImageDescriptor botRight("C:\\Users\\malen\\source\\repos\\EDA-TP8\\EDA-TP8\\EDA-TP8\\botones/boton_right.png");
 			Botons.push_back(botLeft); //primero el boton izquierdo, luego el derecho
 			Botons.push_back(botRight);
 
@@ -150,10 +150,15 @@ int interpretarThreshold(double threshold_cmd)
 
 string getPathFromCmd(int argc, char ** argv)
 {
-	string completePath = argv[1];
+	string completePath;
+	if (argc > 0)
+	{
+		completePath = argv[1];
+	}
 	for (int i = 2; i < argc; i++)
 	{
-		completePath += ' ' + argv[i];
+		completePath += ' ';
+		completePath += argv[i];
 	}
 
 	return completePath;

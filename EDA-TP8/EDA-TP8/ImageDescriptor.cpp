@@ -12,7 +12,7 @@ ImageDescriptor::ImageDescriptor(const char * path_) : path(path_)
 		error = true;
 	}
 	cout << path << endl;
-	ALLEGRO_BITMAP * originalImage = al_load_bitmap(path_);
+	ALLEGRO_BITMAP * originalImage = al_load_bitmap(path);
 	//REVISAR QUE SI NO HAY IMAGEN TIRA UNA EXCEPTION
 	width = al_get_bitmap_width(originalImage);
 	height = al_get_bitmap_height(originalImage);
