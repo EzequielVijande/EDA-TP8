@@ -142,11 +142,11 @@ void controller::dispatch(viewer& v, damero& d)
 							{
 								if (compressImage(ImgVctr[i].getPath(), ImgVctr[i].getHeight(), ImgVctr[i].getWidth(),threshold))
 								{
-									std::cout << "Compresion de: " << ImgVctr[i].getPath() << " exitosa"<< std::endl;
+									std::cout << "Compresion de: " << ImgVctr[i].getPath() << " no pudo ser completada" << std::endl;
 								}
 								else
 								{
-									std::cout << "Compresion de: " << ImgVctr[i].getPath() << " no pudo ser completada" << std::endl;
+									std::cout << "Compresion de: " << ImgVctr[i].getPath() << " exitosa" << std::endl;
 								}
 							}
 						}
