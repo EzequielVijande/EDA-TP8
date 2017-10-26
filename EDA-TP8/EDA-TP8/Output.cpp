@@ -57,11 +57,13 @@ void viewer::UpdateDisplay(damero& damero_)
 
 void viewer::PrintDamero(damero & damero_)
 {
+
 	int posX = 0;
 	int posY = 0;
 	int sizeX = damero_.getSizeX();
 	int sizeY = damero_.getSizeY();
-	for (int i = 0; i < (damero_).getImages().size(); i++)
+	int dameroActual = damero_.getDameroActual();
+	for (int i = FIRST_IMG_OF_THIS_DAMERO(dameroActual); (i < LAST_IMG_OF_THIS_DAMERO(dameroActual)) && (i < (damero_).getImages().size()); i++)
 	{
 		posX = ((damero_).getImages())[i].getPosX();
 		posY = ((damero_).getImages())[i].getPosY();
@@ -73,8 +75,8 @@ void viewer::PrintDamero(damero & damero_)
 		}
 
 	}
-	al_draw_bitmap((damero_.getBotons()[0]).GetBitmap(), (damero_.getBotons()[0]).getPosX(), (damero_.getBotons()[0]).getPosY(),0);
-	al_draw_bitmap((damero_.getBotons()[1]).GetBitmap(), (damero_.getBotons()[1]).getPosX(), (damero_.getBotons()[1]).getPosY(), 0);
+	//al_draw_bitmap((damero_.getBotons()[0]).GetBitmap(), (damero_.getBotons()[0]).getPosX(), (damero_.getBotons()[0]).getPosY(),0);
+	//al_draw_bitmap((damero_.getBotons()[1]).GetBitmap(), (damero_.getBotons()[1]).getPosX(), (damero_.getBotons()[1]).getPosY(), 0);
 
 	bool botonTouched = false;
 	int inicio = 0;  //en principio, deseo tener en cuenta todo el vector de botones.
@@ -88,10 +90,9 @@ void viewer::PrintDamero(damero & damero_)
 	{
 		finish--; //descarto el último boton.
 	}
-	for (int i = 0; (i < finish) && (!botonTouched); i++)
+	for (int i = inicio; (i < finish) && (!botonTouched); i++)
 	{
-		posX = ((damero_).getBotons())[i].getPosX();
-		posY = ((damero_).getBotons())[i].getPosY();
+		al_draw_bitmap((damero_.getBotons()[i]).GetBitmap(), (damero_.getBotons()[i]).getPosX(), (damero_.getBotons()[i]).getPosY(), 0);
 	}
 	
 }

@@ -1,8 +1,7 @@
 #include "damero.h"
 
 #define MARGEN_RATE 0.1
-#define FIRST_IMG_OF_THIS_DAMERO(dameroActual) (IMAGES_PER_DAMERO * dameroActual)
-#define LAST_IMG_OF_THIS_DAMERO(dameroActual) (IMAGES_PER_DAMERO * (dameroActual + 1))
+
 
 
 damero::damero(int width_, int height_, vector<ImageDescriptor> & images_, vector<ImageDescriptor> & botons_) : images(images_), botons(botons_)
@@ -12,13 +11,15 @@ damero::damero(int width_, int height_, vector<ImageDescriptor> & images_, vecto
 	margenX = width * MARGEN_RATE;
 	margenY = height * MARGEN_RATE;
 	botons[BOTON_LEFT].setPos(BOTON_SIZE_X * MARGEN_RATE, height - BOTON_SIZE_Y);
-	botons[BOTON_RIGHT].setPos(width-(BOTON_SIZE_X * MARGEN_RATE), height - BOTON_SIZE_Y);
+	botons[BOTON_RIGHT].setPos(width- (BOTON_SIZE_X*2)- ((BOTON_SIZE_X * MARGEN_RATE)*3), height - BOTON_SIZE_Y - (BOTON_SIZE_Y * MARGEN_RATE));
 
-	dameroMaximo = (int) images.size() / IMAGES_PER_DAMERO;
+	dameroMaximo = (int) (images.size() / IMAGES_PER_DAMERO);
 	if (!(images.size() % IMAGES_PER_DAMERO)) //si la division es exacta
 	{
 		dameroMaximo--; //resto, porque los dameros arrancan desde 0.
 	}					//ejemplo: si tengo 9 imagenes y mi damero acepta 9 imagenes como maximo, quiero que mi dameroMaximo sea '0' en lugar de '1'
+
+	dameroActual = 0;
 }
 
 void damero::setImagesSize(int sizeX_, int sizeY_)
@@ -61,7 +62,7 @@ void damero::touchDamero(int x, int y)
 		{
 			finish--; //descarto el último boton.
 		}
-		for (int i = 0; (i < finish) && (!botonTouched); i++)
+		for (int i = inicio; (i < finish) && (!botonTouched); i++)
 		{
 			posX = botons[i].getPosX();
 			posY = botons[i].getPosY();
@@ -69,6 +70,7 @@ void damero::touchDamero(int x, int y)
 			{
 				botonTouched = true;
 				changeDamero(i);
+				refresh();
 			}
 		}
 	}
@@ -82,10 +84,10 @@ void damero::refresh(void)
 	{
 		images[i].setPos(posX, posY); //seteo posicion
 		posX += (sizeX + margenX);  //calculo posición de la proxima imagen
-		posY += (sizeY + margenY);
 		if (posX > (width - margenX - sizeX)) //reseteo posX cuando llega al tope de anchura del damero. tope de anchura: (width - margenX - sizeX)
 		{
 			posX = margenX;
+			posY += (sizeY + margenY); //avanzo en 'y'
 		}
 	}
 }

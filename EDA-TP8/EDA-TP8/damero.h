@@ -5,6 +5,8 @@
 #define IMAGES_PER_DAMERO 9
 #define BOTON_LEFT 0  //indices correspondientes al vector de botones.
 #define BOTON_RIGHT 1
+#define FIRST_IMG_OF_THIS_DAMERO(dameroActual) (IMAGES_PER_DAMERO * dameroActual)
+#define LAST_IMG_OF_THIS_DAMERO(dameroActual) (IMAGES_PER_DAMERO * (dameroActual + 1))
 
 class damero
 {

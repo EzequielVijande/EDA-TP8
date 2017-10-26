@@ -3,8 +3,8 @@
 //#include <allegro5\allegro.h>
 //#include <allegro5\allegro_image.h>
 #include"Imagenes.h"
-#define IMAGE_SIZE_X 256 
-#define IMAGE_SIZE_Y 130
+#define IMAGE_SIZE_X 180 //256 
+#define IMAGE_SIZE_Y 100 //130
 #define BOTON_SIZE_X 80
 #define BOTON_SIZE_Y 80
 #define SPACE 10

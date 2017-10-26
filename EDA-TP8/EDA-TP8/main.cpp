@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 			dam.setImagesSize(IMAGE_SIZE_X, IMAGE_SIZE_Y); //se podria hacer que el tamaño lo decida damero, segun el tamaño del damero, el margen 
 														   //entre imagenes, y la cantidad de imagenes
 			dam.refresh(); //se setean todas las posiciones de las imagenes de manera simetrica dentro del damero
-
+			v.UpdateDisplay(dam);
 			al_set_target_backbuffer(v.GetDisplay());
 			al_flip_display();
 
@@ -151,7 +151,11 @@ int interpretarThreshold(double threshold_cmd)
 
 string getPathFromCmd(int argc, char ** argv)
 {
-	string completePath(argv[1]);
+	string completePath;
+	if (argc > 0)
+	{
+		completePath = argv[1];
+	}
 	for (int i = 2; i < argc; i++)
 	{
 		completePath += ' ';
