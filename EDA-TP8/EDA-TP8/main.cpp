@@ -102,7 +102,8 @@ int main(int argc, char* argv[])
 			Images.erase(Images.begin()); //eliminar todas las imagenes y botones.
 		}
 	}
-	
+	cout << "Press enter to quit..." << endl;
+	getchar();
 	return 0;
 }
 
@@ -149,8 +150,8 @@ int interpretarThreshold(double threshold_cmd)
 
 string getPathFromCmd(int argc, char ** argv)
 {
-	string completePath;
-	for (int i = 1; i < argc; i++)
+	string completePath = argv[1];
+	for (int i = 2; i < argc; i++)
 	{
 		completePath += ' ' + argv[i];
 	}
