@@ -68,7 +68,7 @@ void viewer::PrintDamero(damero & damero_)
 		posX = ((damero_).getImages())[i].getPosX();
 		posY = ((damero_).getImages())[i].getPosY();
 		al_draw_bitmap(((damero_).getImages())[i].GetBitmap(), posX, posY,0); //Chequar posiciones.
-		al_draw_text(font, al_color_name(FONT_COLOR), posX+(IMAGE_SIZE_X/2.0), posY + IMAGE_SIZE_Y+10, ALLEGRO_ALIGN_CENTRE, (damero_.getImages())[i].getPath());
+		al_draw_text(font, al_color_name(FONT_COLOR), posX+(IMAGE_SIZE_X/2.0), posY + IMAGE_SIZE_Y+10, ALLEGRO_ALIGN_CENTRE, (damero_.getImages())[i].getNameFile());
 		if (((damero_).getImages())[i].wasSelected())
 		{
 			DrawHalo(posX, posY, sizeX, sizeY);

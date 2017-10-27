@@ -1,7 +1,5 @@
 #pragma once
 #include <string>
-//#include <allegro5\allegro.h>
-//#include <allegro5\allegro_image.h>
 #include"Imagenes.h"
 #define IMAGE_SIZE_X 180 //256 
 #define IMAGE_SIZE_Y 100 //130
@@ -24,12 +22,15 @@ public:
 	unsigned int getWidth();
 	unsigned int getHeight();
 	const char * getPath(void);
+	const char * getNameFile(void);
 	bool GetError()const;
 	ALLEGRO_BITMAP* GetBitmap()const;
 	~ImageDescriptor();
 private:
 	bool selected;
 	const char * path;
+	string fileName;
+	string extractNamefile(const char * path_);
 	ALLEGRO_BITMAP* Image;
 	int posX;
 	int posY;

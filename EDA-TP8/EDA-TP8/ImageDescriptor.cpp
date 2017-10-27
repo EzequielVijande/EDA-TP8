@@ -2,10 +2,11 @@
 
 #include <iostream>
 
+#define MAX_CARACTERES_PER_NAME 21
 ImageDescriptor::ImageDescriptor(const char * path_) : path(path_)
 {
+	fileName = extractNamefile(path_);
 	error = false;
-	//path = path_;
 	Image = load_image_at_size(path_, IMAGE_SIZE_X, IMAGE_SIZE_Y);
 	if (Image == nullptr)
 	{
@@ -100,3 +101,29 @@ ALLEGRO_BITMAP* ImageDescriptor::GetBitmap()const
 {
 	return Image;
 }
+
+string ImageDescriptor::extractNamefile(const char * path_)
+{
+	string aux = path_;
+	string aux_reverse;
+	string nameFile = ".-";
+	int j = 0;
+	for (int i = (int)aux.size(); (aux.back() != '/') && (j < MAX_CARACTERES_PER_NAME) && (i > 0); i--, j++) //guardo el fileName en un string auxiliar
+	{																			//con un maximo de MAX_CARACTERES_PER_NAME
+		aux_reverse.push_back(aux.back());
+		aux.pop_back();
+	}
+	//hasta aqui se obtuvo un string del nombre pero con las letras ordenadas alrevés
+	for (int i = (int)aux_reverse.size(); i > 0; i--) //doy vuelta el string
+	{
+		nameFile.push_back(aux_reverse.back());
+		aux_reverse.pop_back();
+	}
+	return nameFile;
+}
+
+const char * ImageDescriptor::getNameFile(void)
+{
+	return fileName.c_str();
+}
+

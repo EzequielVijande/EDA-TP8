@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
 			Images.erase(Images.begin()); //eliminar todas las imagenes y botones.
 		}
 	}
-	
+
 	return 0;
 }
 
@@ -114,8 +114,8 @@ bool parserCmd(int argc, char ** argv, userData_t & userData)
 	bool ret = true;
 	if (argc > 2)
 	{
-		userData.path = getPathFromCmd(argc-1, argv); //arg - 1 porque el último elemento del argv no pertenece al path (el último es el treshold)
-		double threshold_cmd = string2dec(argv[argc-1]); //el último parámetro es el treshold
+		userData.path = getPathFromCmd(argc - 1, argv); //arg - 1 porque el último elemento del argv no pertenece al path (el último es el treshold)
+		double threshold_cmd = string2dec(argv[argc - 1]); //el último parámetro es el treshold
 		if ((threshold_cmd >= 1) && (threshold_cmd <= 100))
 		{
 			userData.threshold = interpretarThreshold(threshold_cmd);
@@ -139,13 +139,13 @@ double string2dec(const char * num_string)
 	double num_dec = 0.0;
 	string num_string_aux = num_string;
 	num_dec = (double)stof(num_string_aux, nullptr);
-	
+
 	return num_dec;
 }
 
 int interpretarThreshold(double threshold_cmd)
 {
-	int threshold = (int)ceil(threshold_cmd);
+	int threshold = (int)ceil(threshold_cmd * THRESHOLD_RATE);
 	return threshold;
 }
 
