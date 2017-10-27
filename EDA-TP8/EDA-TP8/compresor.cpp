@@ -1,18 +1,18 @@
 #include "compresor.h"
-#include <cmath>						
+
 // Devuelve false en caso de que no haya error, devuelve true si es que lo hay
 bool compressImage(const char * imagePath, unsigned width, unsigned height, unsigned int threshold)
 {
 	std::vector<unsigned char> image; //the raw pixels
+
 	if(width != height)
 	{
 		std::cout << "Actualemente el compresor solo admite imagenes cuadradas" << std::endl;
 		return true;
 	}
-	else if (floor(log2(width)) != log2(width))
+	if (threshold>(255*3))
 	{
-		std::cout << "Actualemnte el compresor solos admite largos que sean potencias de 2" << std::endl;
-		return true;
+		std::cout << "Threshold muy alto (MaxThreshold = 765)" << std::endl;
 	}
 	unsigned error = lodepng::decode(image, width, height, imagePath);
 	if (error)
@@ -29,9 +29,10 @@ bool compressImage(const char * imagePath, unsigned width, unsigned height, unsi
 	fs::ofstream file(imageName + extension); //abro el archivo para escritura
 
 	char * ptr = (char*) &width;
+
 	for (int i = 0; i < 4; i++) //escribo el largo de la imagenen  4 bytes
 	{
-		file << *(ptr + i);
+		file.put(*(ptr + i));
 	}
 	quadTree(file, image, threshold, width);
 
@@ -55,7 +56,7 @@ void quadTree(fs::ofstream & text, std::vector<unsigned char>& image, unsigned i
 		fillCuadrant(image,width,secondCuadrant,2);
 		fillCuadrant(image,width,thirdCuadrant,3);
 		fillCuadrant(image,width,fouthCuadrant,4);
-		text << 'H';
+		text.put('H');
 		// declare en el archivo que se divide ahora en cuatro hijos
 		// llamo a la recursion para cada cuadrante
 		quadTree(text, firstCuadrant, threshold, width/2);
@@ -65,10 +66,10 @@ void quadTree(fs::ofstream & text, std::vector<unsigned char>& image, unsigned i
 	}
 	else //se llega al limite, se reemplaza por el promedio
 	{
-		text << 'N';
-		text << (char)((rMax + rMin)/2);
-		text << (char)((gMax + gMin)/2);
-		text << (char)((bMax + bMin)/2);
+		text.put('N');
+		text.put((char)((rMax + rMin) / 2));
+		text.put((char)((gMax + gMin) / 2));
+		text.put((char)((bMax + bMin) / 2));
 	}
 }
 
@@ -130,15 +131,3 @@ bool fillCuadrant(std::vector<unsigned char>& original,unsigned int originalWidt
 	}
 	return true;
 }
-/*
-for (int i = iInicial, k = 0; i < iMax; i++, k++)
-{
-	for (int j = jInicial, l = 0; j < jMax; j++, l++)
-	{
-		original[i + j*(originalWidth * 4)] = r;
-		original[i + j*(originalWidth * 4)+1] = g;
-		original[i + j*(originalWidth * 4)+2] = b;
-		original[i + j*(originalWidth*4)+3] =255;
-	}
-}
-*/

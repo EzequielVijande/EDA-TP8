@@ -5,7 +5,6 @@
 #include <vector>
 #include "lodepng.h"
 #include "boost\filesystem.hpp"
-#include "boost/archive/text_oarchive.hpp"
 
 #define EXTENSION ".met"
 namespace fs = boost::filesystem;
